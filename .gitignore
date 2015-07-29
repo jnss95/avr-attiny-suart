@@ -32,4 +32,5 @@
 # Debug files
 *.dSYM/
 
+*.swp
 build/
