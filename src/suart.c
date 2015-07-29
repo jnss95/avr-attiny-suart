@@ -75,7 +75,7 @@ void suart_put_str(char *data)
 SIGNAL (SIG_OUTPUT_COMPARE1B)
 {
 	uint8_t bits = m_inbits;
-	if (bits > 0 && bits < 0x9){
+	if (bits > 0 && bits < 0x9){ //Skip start and stop bits
 		uint8_t data = m_inbuffer >> 1;
 		if (SUART_RX_PIN & (1<<SUART_RX_BIT))
 			data |= (1<<7);
@@ -96,10 +96,10 @@ SIGNAL (SIG_INTERRUPT0)
 	uint8_t ocr1b = TCNT1 + bitTim/2;
 	if(ocr1b >= bitTim)
 		ocr1b -= bitTim;
-	OCR1B = ocr1b;
-	GIMSK &= ~(1<<INT0);
-	TIFR = (1<<OCF1B);
-	TIMSK |= (1<<OCIE1B);
+	OCR1B = ocr1b; //Set OCR1B trigger value
+	GIMSK &= ~(1<<INT0); //Disable INT0 interrupt
+	TIFR = (1<<OCF1B); //Reset OC1B interrupt flag
+	TIMSK |= (1<<OCIE1B); //Enable OCIE1B interrupt
 }
 
 
