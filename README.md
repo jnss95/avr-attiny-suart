@@ -7,5 +7,5 @@ So if you use this library those functions will be blocked.
 By default the library is configured to run at 9600 baud with a CPU Clock
 of 8MHz.
 
-PIN2 -> RX
-PIN3 -> TX
+> PIN2 -> RX
+> PIN3 -> TX
